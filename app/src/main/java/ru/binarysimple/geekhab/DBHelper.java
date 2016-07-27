@@ -29,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 " score text," +
                 " avatar_url text," +
                 " url text" +
+                " likes integer" +
                 ");"
         );
         db.execSQL("CREATE UNIQUE INDEX id_UNIQUE ON "+Main.TABLE_NAME+" (id ASC);");
