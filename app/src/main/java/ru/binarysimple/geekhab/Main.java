@@ -1,21 +1,28 @@
 package ru.binarysimple.geekhab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+
+/*TextView textView = (TextView)findViewById(R.id.textview);
+        Drawable img = getResources().getDrawable(R.drawable.image);
+        img.setBounds(0, 0, 50, 50);
+        textView.setCompoundDrawables(img, null, null, null);*/
 
 public class Main extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -36,17 +43,19 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
         adapter = new SimpleCursorAdapter(this, R.layout.item, null, from, to, 0);
         lvData = (ListView) findViewById(R.id.lvData);
         lvData.setAdapter(adapter);
+
+        lvData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent userViewAct = new Intent(view.getContext(), User_View.class);
+                userViewAct.putExtra("id",adapter.getCursor().getString(adapter.getCursor().getColumnIndexOrThrow("id")));
+                startActivity(userViewAct);
+            }
+        });
+
         getSupportLoaderManager().initLoader(0, null, this);
 
-/*        Button button = (Button) findViewById(R.id.button);
-
-        assert button != null;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchUsers(view.getContext(), "voffka");
-            }
-        });*/
+        searchUsers(this, "voffka");
     }
 
 
@@ -62,7 +71,9 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
                 Log.d(LOG_TAG, "onResponse " + response.body().getItems().size());
                 WorkDB workDB = new WorkDB();
                 workDB.insertUsersList(context, response.body());
-
+                getSupportLoaderManager().restartLoader(0, null, Main.this); //update cursor
+                System.out.println("adapter getCount = " + adapter.getCount());
+//                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -84,7 +95,6 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         System.out.println("onLoadFinished");
         adapter.swapCursor(data);
-        adapter.notifyDataSetChanged();
     }
 
     @Override

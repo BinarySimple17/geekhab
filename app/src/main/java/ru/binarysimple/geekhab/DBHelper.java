@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 " id text NOT NULL," +
                 " score text," +
                 " avatar_url text," +
-                " url text" +
+                " url text," +
                 " likes integer" +
                 ");"
         );

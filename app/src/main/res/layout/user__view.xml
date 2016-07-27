@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/avatar"
+        android:src="@drawable/ic_avatar_loading"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="uv_username"
+        android:id="@+id/uv_username"
+        android:layout_gravity="center_horizontal" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/firstLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/secondView"
+            android:orientation="vertical"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="false"
+            >
+            <TextView
+                android:id="@+id/uv_tvId"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="tvId"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="8dp"
+                android:maxLines="1"
+                android:layout_weight="50"
+                android:ellipsize="end">
+            </TextView>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/secondView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:id="@+id/thirdLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/secondView"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/uv_tvUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="8dp"
+                android:maxLines="1"
+                android:layout_weight="50"
+                android:gravity="end"
+                android:text="tvUrl"
+                android:ellipsize="end">
+            </TextView>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/uv_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="uv_longText"
+            android:id="@+id/uv_longText"
+            android:layout_gravity="center_horizontal"
+            android:maxLines="5"
+            android:ellipsize="end" />
+
+        <ImageButton
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_triangle"
+            android:rotation="180"
+            android:id="@+id/uv_button"
+            android:layout_gravity="center_horizontal"
+            android:theme="@android:style/Widget.Material.Light.Button.Borderless" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="uv_likesCount"
+            android:id="@+id/uv_likesCount"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
+    <!--    <ToggleButton
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton"
+            android:background="@drawable/btn_selector"
+            android:layout_gravity="center_horizontal"
+            android:checked="false" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/avatar_layer_list"
+            android:id="@+id/imageView" />-->
+
+
+
+    <!--android:src="@drawable/avatar_layer_list"-->
