@@ -8,16 +8,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static DBHelper sInstance;
 
+    private DBHelper(Context context) {
+        super(context, Main.TABLE_NAME, null, 1);
+    }
+
     public static synchronized DBHelper getInstance(Context context) {
         // Use application context
         if (sInstance == null) {
             sInstance = new DBHelper(context.getApplicationContext());
         }
         return sInstance;
-    }
-
-    private DBHelper(Context context) {
-        super(context, Main.TABLE_NAME, null, 1);
     }
 
     @Override
@@ -29,10 +29,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 " score text," +
                 " avatar_url text," +
                 " url text," +
-                " likes integer" +
+                " likes integer," +
+                " status integer " +
                 ");"
         );
-        db.execSQL("CREATE UNIQUE INDEX id_UNIQUE ON "+Main.TABLE_NAME+" (id ASC);");
+        db.execSQL("CREATE UNIQUE INDEX id_UNIQUE ON " + Main.TABLE_NAME + " (id ASC);");
     }
 
     @Override

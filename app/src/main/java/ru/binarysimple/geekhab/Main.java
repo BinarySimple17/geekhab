@@ -26,8 +26,8 @@ import retrofit2.Response;
 
 public class Main extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    public static String LOG_TAG = "geekhab";
-    public static String TABLE_NAME = "geekhabTbl";
+    public static final String LOG_TAG = "geekhab";
+    public static final String TABLE_NAME = "geekhabTbl";
 
     SimpleCursorAdapter adapter;
     ListView lvData;
@@ -48,7 +48,7 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent userViewAct = new Intent(view.getContext(), User_View.class);
-                userViewAct.putExtra("id",adapter.getCursor().getString(adapter.getCursor().getColumnIndexOrThrow("id")));
+                userViewAct.putExtra("id", adapter.getCursor().getString(adapter.getCursor().getColumnIndexOrThrow("id")));
                 startActivity(userViewAct);
             }
         });
@@ -104,7 +104,7 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
 
     static class MyCursorLoader extends CursorLoader {
 
-        WorkDB workDB;
+        final WorkDB workDB;
 
         public MyCursorLoader(Context context) {
             super(context);

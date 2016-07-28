@@ -8,18 +8,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class WorkDB {
-    private DBHelper dbHelper;
-
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_LOGIN = "login";
     public static final String COLUMN_URL = "url";
+    private DBHelper dbHelper;
 
-    public User getUserById(Context context, String id){
+    public User getUserById(Context context, String id) {
 
-        Cursor cursor = getData(context, "select * from " + Main.TABLE_NAME + " WHERE id = ?",new String[]{id});
+        Cursor cursor = getData(context, "select * from " + Main.TABLE_NAME + " WHERE id = ?", new String[]{id});
         User user = new User();
         System.out.println(cursor.getCount());
-        if ((cursor != null)&& (cursor.getCount()>0)) {
+        if ((cursor != null) && (cursor.getCount() > 0)) {
             cursor.moveToFirst();
             user.setLogin(cursor.getString(cursor.getColumnIndexOrThrow("login")));
             user.setId(cursor.getString(cursor.getColumnIndexOrThrow("id")));
@@ -27,15 +26,16 @@ public class WorkDB {
             user.setAvatar_url(cursor.getString(cursor.getColumnIndexOrThrow("avatar_url")));
             user.setUrl(cursor.getString(cursor.getColumnIndexOrThrow("url")));
             user.setLikes(cursor.getInt(cursor.getColumnIndexOrThrow("likes")));
+            user.setStatus(cursor.getInt(cursor.getColumnIndexOrThrow("status")));
         }
         cursor.close();
         return user;
     }
 
-    public void deleteData(Context context){
+    public void deleteData(Context context) {
         dbHelper = DBHelper.getInstance(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.execSQL("delete from "+ Main.TABLE_NAME);
+        db.execSQL("delete from " + Main.TABLE_NAME);
         dbHelper.close();
     }
 
@@ -53,7 +53,7 @@ public class WorkDB {
         dbHelper = DBHelper.getInstance(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Log.d(Main.LOG_TAG, "Update record in " + tableName);
-        db.update(tableName, cv, "_id = ?", new String[]{id});
+        db.update(tableName, cv, "id = ?", new String[]{id});
         dbHelper.close();
     }
 
@@ -63,27 +63,32 @@ public class WorkDB {
         return db.rawQuery(query, args);
     }
 
-    public Cursor getUsersListCursor (Context context){
-        return getData(context,"select * from "+Main.TABLE_NAME,null);
+    public Cursor getUsersListCursor(Context context) {
+        return getData(context, "select * from " + Main.TABLE_NAME, null);
     }
 
-    private ContentValues createCV (User user){
+    private ContentValues createCV(User user) {
         ContentValues cv = new ContentValues();
-        cv.put("login",user.getLogin());
-        cv.put("id",user.getId());
-        cv.put("score",user.getScore());
-        cv.put("avatar_url",user.getAvatar_url());
-        cv.put("url",user.getUrl());
-        cv.put("likes",user.getLikes());
+        cv.put("login", user.getLogin());
+        cv.put("id", user.getId());
+        cv.put("score", user.getScore());
+        cv.put("avatar_url", user.getAvatar_url());
+        cv.put("url", user.getUrl());
+        cv.put("likes", user.getLikes());
+        cv.put("status", user.getStatus());
         return cv;
     }
 
-    public void insertUsersList (Context context, UserList userList){
+    public void insertUsersList(Context context, UserList userList) {
 
-        for (User user:userList.items
-             ) {
+        for (User user : userList.items
+                ) {
             insertRecord(context, Main.TABLE_NAME, createCV(user));
         }
+    }
+
+    public void updateUser(Context context, User user) {
+        updateRecord(context, Main.TABLE_NAME, createCV(user), user.getId());
     }
 
 

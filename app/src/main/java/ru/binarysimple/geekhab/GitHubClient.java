@@ -7,6 +7,6 @@ import retrofit2.http.Query;
 public interface GitHubClient {
 
     @GET("search/users")
-    Call<UserList> getUsers (@Query("q") String userName);
+    Call<UserList> getUsers(@Query("q") String userName);
 
 }
