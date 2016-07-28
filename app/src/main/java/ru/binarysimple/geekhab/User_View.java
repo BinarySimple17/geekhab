@@ -130,10 +130,6 @@ public class User_View extends AppCompatActivity {
         username.setText(user.getLogin());
         tvUrl.setText(user.getUrl());
 
-/*        longText.setText(genLongText(user.getUrl()));
-        ViewGroup.LayoutParams params = longText.getLayoutParams();
-        params.height = longText.getLineHeight() * lines; //TODO костыль на 5 строк
-        longText.setLayoutParams(params);*/
     }
 
     private void setLikeStatus(int status) {

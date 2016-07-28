@@ -19,10 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-/*TextView textView = (TextView)findViewById(R.id.textview);
-        Drawable img = getResources().getDrawable(R.drawable.image);
-        img.setBounds(0, 0, 50, 50);
-        textView.setCompoundDrawables(img, null, null, null);*/
+
 
 public class Main extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
