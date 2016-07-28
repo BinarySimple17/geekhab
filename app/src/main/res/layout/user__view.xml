@@ -9,12 +9,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <!--android:src="@drawable/ic_avatar_loading"-->
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/avatar"
-        android:src="@drawable/ic_avatar_loading"
+        android:src="@drawable/layer_drawable"
         android:layout_gravity="center_horizontal" />
 
     <TextView
@@ -90,7 +91,6 @@
             android:text="uv_longText"
             android:id="@+id/uv_longText"
             android:layout_gravity="center_horizontal"
-            android:maxLines="5"
             android:ellipsize="end" />
 
         <ImageButton

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/avatar_layer">
+        <bitmap
+            android:src="@drawable/ic_no_avatar" />
+    </item>
+
+    <item
+        android:top="50dp"
+        android:bottom="50dp"
+        android:left="50dp"
+        android:right="50dp">
+        <bitmap
+            android:gravity="center"
+            android:alpha="0.5"
+            android:src="@drawable/ic_like_btn" />
+    </item>
+</layer-list>
