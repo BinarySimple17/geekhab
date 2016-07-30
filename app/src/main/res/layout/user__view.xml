@@ -10,13 +10,29 @@
     android:layout_height="wrap_content">
 
     <!--android:src="@drawable/ic_avatar_loading"-->
+    <!--android:src="@drawable/layer_drawable"-->
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/avatar"
-        android:src="@drawable/layer_drawable"
-        android:layout_gravity="center_horizontal" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/avatar"
+            android:src="@drawable/ic_no_avatar"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_Like"
+            android:src="@drawable/ic_like_btn0"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,6 +126,7 @@
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
+
 </LinearLayout>
 </ScrollView>
     <!--    <ToggleButton

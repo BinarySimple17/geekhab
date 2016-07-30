@@ -57,7 +57,9 @@ public class User_View extends AppCompatActivity {
             }
         });
 
-        avatar.setOnClickListener(new View.OnClickListener() {
+        ImageView iv_likes = (ImageView) findViewById(R.id.iv_Like);
+        assert iv_likes != null;
+        iv_likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setLikeUnlike();
@@ -75,7 +77,7 @@ public class User_View extends AppCompatActivity {
     }
 
     private void loadAvatar(Context context) {
-        final Target target = new Target() {
+        /*final Target target = new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 System.out.println("onBitmapLoaded");
@@ -96,13 +98,13 @@ public class User_View extends AppCompatActivity {
             public void onPrepareLoad(Drawable placeHolderDrawable) {
 
             }
-        };
+        };*/
 
-        avatar.setTag(target); //save target from GC
+     //   avatar.setTag(target); //save target from GC
 
         Picasso.with(context)
                 .load(user.getAvatar_url())
-                .into(target);
+                .into(avatar);
     }
 
     private void setContent() {
@@ -116,7 +118,6 @@ public class User_View extends AppCompatActivity {
         TextView username = (TextView) findViewById(R.id.uv_username);
         TextView tvid = (TextView) findViewById(R.id.uv_tvId);
         TextView tvUrl = (TextView) findViewById(R.id.uv_tvUrl);
-        //TextView longText = (TextView) findViewById(R.id.uv_longText);
         TextView likesCount = (TextView) findViewById(R.id.uv_likesCount);
         avatar = (ImageView) findViewById(R.id.avatar);
 
@@ -133,19 +134,11 @@ public class User_View extends AppCompatActivity {
     }
 
     private void setLikeStatus(int status) {
-        LayerDrawable oldLayerDrawable = (LayerDrawable) avatar.getDrawable();
-        Drawable[] layers = new Drawable[2];
-        layers[0] = oldLayerDrawable.getDrawable(0);
-        if (status > 0) layers[1] = getResources().getDrawable(R.drawable.ic_like_btn1);
-        else layers[1] = getResources().getDrawable(R.drawable.ic_like_btn0);
-        //params.height = newSize;
-        //longText.setLayoutParams(params);
-        LayerDrawable layerDrawable = new LayerDrawable(layers);
-        layerDrawable.getDrawable(1).setBounds(50, 50, 50, 50);
-        avatar.setImageDrawable(layerDrawable);
+        ImageView iv_likes = (ImageView) findViewById(R.id.iv_Like);
+        if (status > 0) iv_likes.setImageDrawable(getResources().getDrawable(R.drawable.ic_like_btn1));
+        else iv_likes.setImageDrawable(getResources().getDrawable(R.drawable.ic_like_btn0));
         TextView likesCount = (TextView) findViewById(R.id.uv_likesCount);
         likesCount.setText(String.valueOf(user.getLikes()));
-
     }
 
     private void setLikeUnlike() {
