@@ -69,7 +69,7 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
                 WorkDB workDB = new WorkDB();
                 workDB.insertUsersList(context, response.body());
                 getSupportLoaderManager().restartLoader(0, null, Main.this); //update cursor
-                System.out.println("adapter getCount = " + adapter.getCount());
+                Log.d(LOG_TAG,"adapter getCount = " + adapter.getCount());
 //                adapter.notifyDataSetChanged();
             }
 
@@ -84,13 +84,13 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        System.out.println("onCreateLoader");
+        Log.d(LOG_TAG,"onCreateLoader");
         return new MyCursorLoader(this);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        System.out.println("onLoadFinished");
+        Log.d(LOG_TAG,"onLoadFinished");
         adapter.swapCursor(data);
     }
 
@@ -106,12 +106,12 @@ public class Main extends AppCompatActivity implements LoaderManager.LoaderCallb
         public MyCursorLoader(Context context) {
             super(context);
             this.workDB = new WorkDB();
-            System.out.println("MyCursorLoader");
+            Log.d(LOG_TAG,"MyCursorLoader");
         }
 
         @Override
         public Cursor loadInBackground() {
-            System.out.println("loadinBackground");
+            Log.d(LOG_TAG,"loadinBackground");
             return workDB.getUsersListCursor(getContext());
         }
     }

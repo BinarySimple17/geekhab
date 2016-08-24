@@ -77,30 +77,6 @@ public class User_View extends AppCompatActivity {
     }
 
     private void loadAvatar(Context context) {
-        /*final Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                System.out.println("onBitmapLoaded");
-                LayerDrawable oldLayerDrawable = (LayerDrawable) avatar.getDrawable();
-                Drawable[] layers = new Drawable[2];
-                layers[0] = new BitmapDrawable(getBaseContext().getResources(), bitmap);
-                layers[1] = oldLayerDrawable.getDrawable(1);
-                LayerDrawable layerDrawable = new LayerDrawable(layers);
-                avatar.setImageDrawable(layerDrawable);
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };*/
-
-     //   avatar.setTag(target); //save target from GC
 
         Picasso.with(context)
                 .load(user.getAvatar_url())
